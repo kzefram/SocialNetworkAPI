@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start:dev": "",
-    "start": "",
+    "start": "nodemon server.js",
     "server": "",
     "build": "",
     "install": "",
@@ -27,7 +27,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
     "if-env": "^1.0.4",
-    "mongoose": "^8.2.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3",
     "sequelize": "^6.37.1"
   },
   "devDependencies": {
