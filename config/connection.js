@@ -1,15 +1,8 @@
 require('dotenv').config();
 
-const Sequelize = require('sequelize');
-// this is my actual DB connection
-const sequelize = process.env.JAWSDB_URL
-  ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize(process.env.DB_NAME, {
-      host: 'localhost',
-      dialect: 'mongodb',
-      dialectOptions: {
-        decimalNumbers: true,
-      },
-    });
+const mongoose = require('mongoose');
+// here we are attempting to make a DB connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/MediaDB'); 
 
-module.exports = sequelize;
+
+module.exports = mongoose.connection;

@@ -1,11 +1,13 @@
-const router = require('express').Router();
-const { Users } = require('./models');
+//const router = require('express').Router();
+//const { Users } = require('./models');
+const User = require('../models/Users');
 
 // get all users
-export const getAllUsers = async (req, res, next) => {
+//export const getAllUsers = async (req, res, next) => {
+const getAllUsers = async (req, res, next) => {
     let users;
     try {
-        users = await Users.findAll();
+        users = await User.findAll();
         res.status(200).json(userData);
     } catch (err) {
         res.status(500).json(err);
@@ -17,8 +19,21 @@ export const getAllUsers = async (req, res, next) => {
     return res.status(200).json({ users });
 }  
 
+
+// This is typical PROMISE .then/.catch ASYNC syntax
+const otherGetAll = ()  => {
+    User.findAll()
+        .then(userData => res.status(200).json(userData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    // this data is processed before our ASYNC opertaion completes
+}
+
 // Sign up
-export const createUser = async (req, res, next) => {
+//export const createUser = async (req, res, next) => {
+const createUser = async (req, res, next) => {
     const { username, password } = req.body;
     let currentuser;
     try {
@@ -27,3 +42,7 @@ export const createUser = async (req, res, next) => {
         res.status(500).json(err);
     }
 }
+
+
+
+module.exports = { getAllUsers, createUser }

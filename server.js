@@ -1,23 +1,22 @@
 const express = require('express');
-//const sequelize = require('../config/connection');
-const mongoose = require('mongoose');
-//const routes = require('./routes');
-//const { getAllUsers } = require('../controllers/users-controller');
-//const PORT = process.env.PORT || 3000;
-const app = express();
+const router = express.Router();
+// const mongoose = process.env.MONGODB_URI;
+const db = require('./config/connection');
+const routes = require('./routes/index');
+const PORT = process.env.PORT || 3000;
 
-// Routes
-//app.use(routes);
+app = express();
+
+app.use(express.json());
+
+app.use(routes);
 
 
-
-// Connect to the database before starting the Express.js server
-mongoose.connect('mongodb://localhost:27017')
-    .then(() => {
-        app.listen(3000, () => {
-            console.log('Server is running on port 3000');
-        })
-    .catch(err => {
-        console.error('Error connecting to MongoDB', err);
+// We want to make sure we have a PROPER DB CONNECTION before we start the server
+db.once('open', () => {
+    console.log("Database connected...");
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
     });
-});
+})
+
