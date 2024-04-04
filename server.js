@@ -16,7 +16,7 @@ app.use(routes);
 db.once('open', () => {
     console.log("Database connected...");
     app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+        console.log(`Server is running on http://127.0.0.1.3000:${PORT}`);
     });
 })
 
