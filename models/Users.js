@@ -20,16 +20,23 @@ const userSchema = new Schema({
         ref: 'Thought'
         }
     ],
-    likes: [
+    reactions: [
         {
         type: Schema.Types.ObjectId,
         ref: 'User'
         }
     ],
-    createdAt: {
+    friends: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    
+    createdAt: [
+        {
         type: Date,
         default: Date.now,
-    }
+        }
+    ],
     }
 );
 
